@@ -1,0 +1,12 @@
+streamlit
+langchain
+langchain-core
+langchain-groq
+langchain-google-genai
+langchain-community
+tavily-python
+pytesseract
+numpy
+requests
+pillow
+PyMuPDF
