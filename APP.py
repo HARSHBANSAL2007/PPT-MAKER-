@@ -157,7 +157,7 @@ def run_agent(leader_agent, user_query):
 
 
 # AGENT CREATIONleader_agent = create_agent(model=model, tools=[search, generate_image])
-if model:
+if all(ALL_API):
     leader_agent = create_agent(model=model, tools=[search, generate_image])
 else:
     st.error("Model not initialized. Please enter API keys.")
