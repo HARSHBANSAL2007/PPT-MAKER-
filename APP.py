@@ -15,7 +15,7 @@ import requests as r
 from urllib.parse import quote
 from PIL import Image
 import base64
-
+model=none
 # PROJECT FLOW
 # OBJECTIVE : PPT GENERATOR
 # MODEL ==> LLM CALL : TOOL ==> SEARCH API'S , IMAGE API
