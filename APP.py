@@ -156,8 +156,11 @@ def run_agent(leader_agent, user_query):
     return code
 
 
-# AGENT CREATION
-leader_agent = create_agent(model=model, tools=[search, generate_image])
+# AGENT CREATIONleader_agent = create_agent(model=model, tools=[search, generate_image])
+if model:
+    leader_agent = create_agent(model=model, tools=[search, generate_image])
+else:
+    st.error("Model not initialized. Please enter API keys.")
 
 tab1, tab2, tab3 = st.tabs(["GENERATE IMAGES", "FETCH NEWS", "GENERATE PPT"])
 
