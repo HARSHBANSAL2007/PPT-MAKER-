@@ -74,34 +74,20 @@ user = st.text_area("Write HERE: ")
 
 
 # TOOL2 : IMAGE GENERATION
-def generate_image(img_prompt, slide_no=1):
-    """This function helps user to generate image using free API, with given img_prompt"""
-    encoded_prompt = quote(img_prompt)
-    url = f"https://image.pollinations.ai/prompt/{encoded_prompt}"
+def generate_image(img_prompt, slide_no = 1):
+  """This function helps user to generate image
+  using free api, with given img_prompt, with slide no"""
 
-    for attempt in range(3):
-        response = r.get(url, timeout=60)
-        if response.status_code == 200 and response.headers.get("content-type", "").startswith("image"):
-            break
-        time.sleep(2)
-    else:
-        return None
+  url = f"https://image.pollinations.ai/{img_prompt}"
 
-    filename = f"ai_image_{slide_no}.jpeg"
-    with open(filename, 'wb') as f:
-        f.write(response.content)
+  import requests as r
+  content = r.get(url).content
+  with open(f"ai_image_{slide_no}.jpeg", 'wb') as f:
+    f.write(content)
 
-    try:
-        img = Image.open(filename)
-        img.verify()
-
-        with open(filename, 'rb') as img_file:
-            encoded_string = base64.b64encode(img_file.read()).decode('utf-8')
-
-        content_type = response.headers.get("content-type", "image/jpeg")
-        return f"data:{content_type};base64,{encoded_string}"
-    except Exception:
-        return None
+  from PIL import Image
+  img = Image.open(f"ai_image_{slide_no}.jpeg")
+  return url
 
 
 # PROMPT GENERATOR
